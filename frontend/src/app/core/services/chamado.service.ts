@@ -1,0 +1,21 @@
+import { Injectable, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { AbrirChamadoRequest, AtualizarStatusRequest, Chamado } from '../../models/chamado.model';
+
+@Injectable({ providedIn: 'root' })
+export class ChamadoService {
+  private readonly http = inject(HttpClient);
+  private readonly apiUrl = 'http://localhost:8080/api/chamados';
+
+  abrirChamado(dados: AbrirChamadoRequest) {
+    return this.http.post<Chamado>(this.apiUrl, dados);
+  }
+
+  listarChamados() {
+    return this.http.get<Chamado[]>(this.apiUrl);
+  }
+
+  atualizarStatus(id: number, payload: AtualizarStatusRequest) {
+    return this.http.put<Chamado>(`${this.apiUrl}/${id}/status`, payload);
+  }
+}
