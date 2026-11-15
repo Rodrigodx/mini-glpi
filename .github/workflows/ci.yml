@@ -26,7 +26,7 @@ jobs:
           cache: 'maven'
 
       - name: Executar testes unitários (JUnit 5 + Mockito)
-        run: ./mvnw test
+        run: chmod +x mvnw && ./mvnw test
 
   frontend-test-build:
     name: Frontend - Testes & Build (Angular)
