@@ -45,4 +45,7 @@ public class Equipamento {
     public void setSetorLocalizacao(String setorLocalizacao) { this.setorLocalizacao = setorLocalizacao; }
     public Boolean getAtivoNaRede() { return ativoNaRede; }
     public void setAtivoNaRede(Boolean ativoNaRede) { this.ativoNaRede = ativoNaRede; }
+
+    public void setId(long l) {
+    }
 }
