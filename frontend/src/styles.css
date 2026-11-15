@@ -1,4 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global styles & Mobile-First Responsive Layout - Mini-GLPI */
 :root {
   --bg: #f4f6f9;
   --surface: #ffffff;
@@ -14,7 +14,13 @@
   --success-bg: #f0fdf4;
 }
 
-* { box-sizing: border-box; }
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
 
 body {
   margin: 0;
@@ -22,6 +28,7 @@ body {
   background: var(--bg);
   color: var(--text);
   line-height: 1.5;
+  overflow-x: hidden;
 }
 
 .skip-link {
@@ -33,58 +40,106 @@ body {
 }
 .skip-link:focus { left: 1rem; top: 1rem; z-index: 100; }
 
-.container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
 
+/* Barra superior responsiva */
 .topbar {
   background: #0f172a;
   color: #fff;
-  padding: 0.9rem 0;
+  padding: 0.85rem 0;
   border-bottom: 3px solid var(--primary);
 }
-.topbar-inner { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
-.brand { color: #fff; text-decoration: none; font-weight: 700; font-size: 1.2rem; }
-.brand-sub { font-weight: 400; font-size: 0.85rem; color: #94a3b8; margin-left: 0.35rem; }
+.topbar-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem 1rem;
+  flex-wrap: wrap;
+}
+.brand {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: clamp(1.05rem, 2.5vw, 1.25rem);
+}
+.brand-sub {
+  font-weight: 400;
+  font-size: 0.85rem;
+  color: #94a3b8;
+  margin-left: 0.35rem;
+}
 
-.nav-links { display: flex; gap: 1rem; align-items: center; }
+.nav-links {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
 .nav-links a, .btn-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
   color: #e2e8f0;
   text-decoration: none;
   background: none;
   border: none;
   font: inherit;
+  font-size: 0.92rem;
   cursor: pointer;
   padding: 0.4rem 0.75rem;
   border-radius: 6px;
 }
-.nav-links a.active, .nav-links a:hover, .btn-link:hover { background: #1e293b; color: #fff; }
+.nav-links a.active, .nav-links a:hover, .btn-link:hover {
+  background: #1e293b;
+  color: #fff;
+}
 
-.main-content { padding: 2rem 1rem; }
+.main-content {
+  padding: 1.75rem 1rem 2.5rem;
+}
 
+/* Cards e Formulários */
 .card {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 1.75rem;
+  width: 100%;
   max-width: 720px;
   margin: 0 auto;
   box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05);
 }
 .card-narrow { max-width: 440px; }
-.card-header h1 { margin: 0 0 0.25rem; font-size: 1.5rem; }
-.subtitle { margin: 0 0 1.25rem; color: var(--muted); font-size: 0.95rem; }
+.card-header h1 {
+  margin: 0 0 0.25rem;
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+}
+.subtitle {
+  margin: 0 0 1.25rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
 
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-@media (max-width: 640px) { .form-row { grid-template-columns: 1fr; } }
 
 .form-group { display: flex; flex-direction: column; margin-bottom: 1rem; }
 label { font-weight: 600; margin-bottom: 0.35rem; font-size: 0.9rem; }
 input, textarea {
+  width: 100%;
   font: inherit;
+  min-height: 44px;
   padding: 0.65rem 0.75rem;
   border: 1px solid var(--border);
   border-radius: 6px;
   background: #fff;
 }
+textarea { min-height: 104px; resize: vertical; }
 input:focus, textarea:focus, button:focus-visible, a:focus-visible {
   outline: 3px solid #93c5fd;
   outline-offset: 2px;
@@ -92,6 +147,10 @@ input:focus, textarea:focus, button:focus-visible, a:focus-visible {
 .field-error { color: var(--danger-text); font-size: 0.82rem; margin-top: 0.25rem; }
 
 .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
   font: inherit;
   font-weight: 600;
   padding: 0.65rem 1.2rem;
@@ -106,18 +165,40 @@ input:focus, textarea:focus, button:focus-visible, a:focus-visible {
 .btn-success:hover:not(:disabled) { background: var(--success-hover); }
 .btn-secondary { background: #e2e8f0; color: var(--text); }
 .btn-full { width: 100%; }
-.btn-sm { padding: 0.45rem 0.85rem; font-size: 0.88rem; width: 100%; margin-top: 0.5rem; }
+.btn-sm { min-height: 40px; padding: 0.45rem 0.85rem; font-size: 0.88rem; width: 100%; margin-top: 0.65rem; }
 
-.alert { padding: 0.85rem 1rem; border-radius: 6px; margin-bottom: 1rem; font-weight: 500; }
+.alert { padding: 0.85rem 1rem; border-radius: 6px; margin-bottom: 1rem; font-weight: 500; word-break: break-word; }
 .alert-error { background: var(--danger-bg); color: var(--danger-text); border: 1px solid #fecaca; }
 .alert-success { background: var(--success-bg); color: var(--success); border: 1px solid #bbf7d0; }
 
-.kanban-header { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
-.kanban-header h1 { margin: 0; font-size: 1.5rem; }
-.kanban-board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; align-items: start; }
-@media (max-width: 900px) { .kanban-board { grid-template-columns: 1fr; } }
+/* Painel Kanban (Desktop -> Tablet -> Mobile) */
+.kanban-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+.kanban-header h1 {
+  margin: 0;
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+}
+.kanban-header .subtitle { margin-bottom: 0; }
 
-.kanban-column { background: #e2e8f0; border-radius: 10px; padding: 0.85rem; }
+.kanban-board {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.kanban-column {
+  background: #e2e8f0;
+  border-radius: 10px;
+  padding: 0.85rem;
+  min-width: 0;
+}
 .column-header {
   display: flex;
   justify-content: space-between;
@@ -139,8 +220,9 @@ input:focus, textarea:focus, button:focus-visible, a:focus-visible {
   border-radius: 8px;
   padding: 1rem;
   margin-bottom: 0.75rem;
+  overflow-wrap: anywhere;
 }
-.ticket-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+.ticket-top { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; }
 .tag-pill { background: #dbeafe; color: #1e40af; font-weight: 700; font-size: 0.78rem; padding: 0.2rem 0.55rem; border-radius: 4px; }
 .ticket-id { color: var(--muted); font-size: 0.82rem; font-weight: 600; }
 .ticket-card h3 { margin: 0 0 0.35rem; font-size: 1.02rem; }
@@ -150,6 +232,7 @@ input:focus, textarea:focus, button:focus-visible, a:focus-visible {
 .laudo-box p { margin: 0.25rem 0 0; }
 .empty-state { text-align: center; color: var(--muted); font-size: 0.9rem; padding: 1rem 0; }
 
+/* Modal Acessível e Responsivo */
 .modal-backdrop {
   position: fixed;
   inset: 0;
@@ -166,9 +249,70 @@ input:focus, textarea:focus, button:focus-visible, a:focus-visible {
   padding: 1.5rem;
   width: 100%;
   max-width: 520px;
+  max-height: 90dvh;
+  overflow-y: auto;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
-.modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
-.modal-header h2 { margin: 0; font-size: 1.2rem; }
-.btn-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--muted); }
+.modal-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem; }
+.modal-header h2 { margin: 0; font-size: 1.15rem; }
+.btn-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  min-width: 40px;
+  min-height: 40px;
+  cursor: pointer;
+  color: var(--muted);
+}
 .modal-actions { display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1rem; }
+
+/* Tablet (<= 1024px): Kanban em 2 colunas */
+@media (max-width: 1024px) {
+  .kanban-board {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Mobile (<= 640px): Layout empilhado e botões full-width */
+@media (max-width: 640px) {
+  .topbar-inner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .nav-links {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .nav-links a, .btn-link {
+    flex: 1;
+    text-align: center;
+    background: rgba(30, 41, 59, 0.55);
+  }
+  .main-content {
+    padding: 1.25rem 0.75rem 2rem;
+  }
+  .card {
+    padding: 1.25rem 1rem;
+  }
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  .card .btn[type="submit"],
+  .kanban-header .btn {
+    width: 100%;
+  }
+  .kanban-board {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .modal-dialog {
+    padding: 1.15rem;
+  }
+  .modal-actions {
+    flex-direction: column-reverse;
+  }
+  .modal-actions .btn {
+    width: 100%;
+  }
+}
