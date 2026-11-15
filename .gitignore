@@ -1,3 +1,4 @@
+cat << 'EOF' > .gitignore
 # ==========================================
 # IDEs e Editores (IntelliJ / VS Code)
 # ==========================================
@@ -12,23 +13,24 @@ out/
 # ==========================================
 # Backend — Java / Spring Boot (Maven e Gradle)
 # ==========================================
-backend/target/
-backend/build/
-backend/.gradle/
-backend/logs/
+target/
+build/
+.gradle/
+logs/
 *.log
 *.jar
 *.war
 *.ear
+!**/.mvn/wrapper/maven-wrapper.jar
 
 # ==========================================
 # Frontend — Angular / Node
 # ==========================================
-frontend/node_modules/
-frontend/dist/
-frontend/.angular/
-frontend/coverage/
-frontend/tmp/
+node_modules/
+dist/
+.angular/
+coverage/
+tmp/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
@@ -53,3 +55,7 @@ yarn-error.log*
 .directory
 .DS_Store
 Thumbs.db
+EOF
+
+rm -f backend/mini-glpi/.gitignore
+git status
