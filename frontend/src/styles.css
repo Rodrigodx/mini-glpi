@@ -1,1 +1,174 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --bg: #f4f6f9;
+  --surface: #ffffff;
+  --text: #1e293b;
+  --muted: #475569;
+  --border: #cbd5e1;
+  --primary: #1d4ed8;
+  --primary-hover: #1e40af;
+  --success: #15803d;
+  --success-hover: #166534;
+  --danger-bg: #fef2f2;
+  --danger-text: #991b1b;
+  --success-bg: #f0fdf4;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  background: var(--primary);
+  color: #fff;
+  padding: 0.5rem 1rem;
+}
+.skip-link:focus { left: 1rem; top: 1rem; z-index: 100; }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+
+.topbar {
+  background: #0f172a;
+  color: #fff;
+  padding: 0.9rem 0;
+  border-bottom: 3px solid var(--primary);
+}
+.topbar-inner { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.brand { color: #fff; text-decoration: none; font-weight: 700; font-size: 1.2rem; }
+.brand-sub { font-weight: 400; font-size: 0.85rem; color: #94a3b8; margin-left: 0.35rem; }
+
+.nav-links { display: flex; gap: 1rem; align-items: center; }
+.nav-links a, .btn-link {
+  color: #e2e8f0;
+  text-decoration: none;
+  background: none;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+}
+.nav-links a.active, .nav-links a:hover, .btn-link:hover { background: #1e293b; color: #fff; }
+
+.main-content { padding: 2rem 1rem; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.75rem;
+  max-width: 720px;
+  margin: 0 auto;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05);
+}
+.card-narrow { max-width: 440px; }
+.card-header h1 { margin: 0 0 0.25rem; font-size: 1.5rem; }
+.subtitle { margin: 0 0 1.25rem; color: var(--muted); font-size: 0.95rem; }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+@media (max-width: 640px) { .form-row { grid-template-columns: 1fr; } }
+
+.form-group { display: flex; flex-direction: column; margin-bottom: 1rem; }
+label { font-weight: 600; margin-bottom: 0.35rem; font-size: 0.9rem; }
+input, textarea {
+  font: inherit;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: #fff;
+}
+input:focus, textarea:focus, button:focus-visible, a:focus-visible {
+  outline: 3px solid #93c5fd;
+  outline-offset: 2px;
+}
+.field-error { color: var(--danger-text); font-size: 0.82rem; margin-top: 0.25rem; }
+
+.btn {
+  font: inherit;
+  font-weight: 600;
+  padding: 0.65rem 1.2rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+.btn:disabled { opacity: 0.65; cursor: not-allowed; }
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:hover:not(:disabled) { background: var(--primary-hover); }
+.btn-success { background: var(--success); color: #fff; }
+.btn-success:hover:not(:disabled) { background: var(--success-hover); }
+.btn-secondary { background: #e2e8f0; color: var(--text); }
+.btn-full { width: 100%; }
+.btn-sm { padding: 0.45rem 0.85rem; font-size: 0.88rem; width: 100%; margin-top: 0.5rem; }
+
+.alert { padding: 0.85rem 1rem; border-radius: 6px; margin-bottom: 1rem; font-weight: 500; }
+.alert-error { background: var(--danger-bg); color: var(--danger-text); border: 1px solid #fecaca; }
+.alert-success { background: var(--success-bg); color: var(--success); border: 1px solid #bbf7d0; }
+
+.kanban-header { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.kanban-header h1 { margin: 0; font-size: 1.5rem; }
+.kanban-board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; align-items: start; }
+@media (max-width: 900px) { .kanban-board { grid-template-columns: 1fr; } }
+
+.kanban-column { background: #e2e8f0; border-radius: 10px; padding: 0.85rem; }
+.column-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  margin-bottom: 0.75rem;
+  background: #fff;
+}
+.column-header h2 { margin: 0; font-size: 1rem; }
+.status-aberto { border-left: 4px solid #dc2626; }
+.status-andamento { border-left: 4px solid #d97706; }
+.status-concluido { border-left: 4px solid #15803d; }
+.badge { background: #0f172a; color: #fff; padding: 0.15rem 0.55rem; border-radius: 999px; font-size: 0.8rem; font-weight: 700; }
+
+.ticket-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+}
+.ticket-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+.tag-pill { background: #dbeafe; color: #1e40af; font-weight: 700; font-size: 0.78rem; padding: 0.2rem 0.55rem; border-radius: 4px; }
+.ticket-id { color: var(--muted); font-size: 0.82rem; font-weight: 600; }
+.ticket-card h3 { margin: 0 0 0.35rem; font-size: 1.02rem; }
+.ticket-desc { margin: 0 0 0.5rem; font-size: 0.9rem; color: var(--muted); }
+.ticket-meta { margin: 0; font-size: 0.85rem; }
+.laudo-box { background: #f8fafc; border-left: 3px solid var(--success); padding: 0.5rem 0.75rem; margin-top: 0.5rem; font-size: 0.85rem; }
+.laudo-box p { margin: 0.25rem 0 0; }
+.empty-state { text-align: center; color: var(--muted); font-size: 0.9rem; padding: 1rem 0; }
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 50;
+}
+.modal-dialog {
+  background: #fff;
+  border-radius: 10px;
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 520px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+.modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+.modal-header h2 { margin: 0; font-size: 1.2rem; }
+.btn-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--muted); }
+.modal-actions { display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1rem; }
