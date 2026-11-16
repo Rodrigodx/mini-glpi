@@ -1,11 +1,12 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AbrirChamadoRequest, AtualizarStatusRequest, Chamado } from '../../models/chamado.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class ChamadoService {
   private readonly http = inject(HttpClient);
-  private readonly apiUrl = 'http://localhost:8080/api/chamados';
+  private readonly apiUrl = `${environment.apiUrl}/chamados`;
 
   abrirChamado(dados: AbrirChamadoRequest) {
     return this.http.post<Chamado>(this.apiUrl, dados);
