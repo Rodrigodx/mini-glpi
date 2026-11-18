@@ -13,7 +13,7 @@ Sistema web full-stack para abertura pública de chamados técnicos, controle pa
 - **Painel Kanban Operacional:** Organização visual do ciclo de vida dos atendimentos em três estados (`ABERTO`, `EM_ANDAMENTO` e `CONCLUIDO`), com transição controlada de status.
 - **Encerramento Técnico Auditável:** Modal dedicado para conclusão de chamados exigindo o preenchimento obrigatório do laudo técnico da solução aplicada.
 - **Acessibilidade e Inclusão Digital (ODS 9 e ODS 10):** Conformidade com diretrizes **WCAG 2.1 / 2.5.5** (`skip-link` para salto de navegação, anéis de foco de alta visibilidade `:focus-visible`, marcos semânticos HTML5/ARIA, alto contraste e alvos de toque mínimos de `44px`).
-- **Design Responsivo (*Mobile-First*):** Grade adaptativa em CSS Grid que reorganiza o quadro Kanban conforme a resolução (3 colunas no desktop, 2 colunas em tablets e 1 coluna empilhada em smartphones) e modal com rolagem dinâmica (`90dvh`).
+- **Design Responsivo:** Grade adaptativa em CSS Grid que reorganiza o quadro Kanban conforme a resolução (3 colunas no desktop, 2 colunas em tablets e 1 coluna empilhada em smartphones) e modal com rolagem dinâmica (`90dvh`).
 
 ---
 
